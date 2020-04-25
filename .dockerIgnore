@@ -1,0 +1,3 @@
+# ignore when u run docker
+node_modules
+npm-debug.log

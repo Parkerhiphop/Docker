@@ -1,0 +1,28 @@
+version: '3'
+services:
+# NAME OF SERVICE, it can be web or node ...
+  app:
+    restart: always # always restart after it fails.
+    build: . # current directory
+    ports:
+      - '80:3000' # localMachine(nodePort) : containerPort 把 80 連到 本機 3000 port 在跑的東西 localhost: 80
+    links: # link other services to this service
+      - node
+      - mongo
+      - mysql
+# Mongo Service
+  mongo:
+    container_name: mongo
+    image: mongo # NOT building from docker, particularly pull this image here.
+    ports:
+      - '27017:27017' # mongoPort : containerPort  localhost:27017
+  mysql:
+    container_name: mysql
+    image: mysql
+    ports:
+      - '3306:3306' # localhost:3306
+  node:
+    container_name: node
+    image: node
+
+# Another Service ... 
